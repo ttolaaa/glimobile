@@ -9,7 +9,6 @@ void main() => runApp(const HomePage());
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
   static const String _title = 'GLI Mobile App';
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,9 +35,6 @@ class HomePageBody extends StatefulWidget {
 class _HomePageBodyState  extends State<HomePageBody>{
   @override
   Widget build(BuildContext context) {
-
-    // TODO: implement build
-    // throw UnimplementedError();
     return Padding(
       padding: const EdgeInsets.all(10),
       child: ListView(
@@ -47,7 +43,7 @@ class _HomePageBodyState  extends State<HomePageBody>{
           Container(
             alignment: Alignment.center,
             child: const Text(
-              'GLIのモバイルアプリ',
+              'GLI Mobile App',
               style: TextStyle(
                 color: Colors.teal,
                 fontWeight: FontWeight.w500,
@@ -81,10 +77,8 @@ class _HomePageBodyState  extends State<HomePageBody>{
                         )
                     )
                 ),
-                child: const Text('始める'),
+                child: const Text('start'),
                 onPressed: () {
-                  // print(nameController.text);
-                  // print(passwordController.text);
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()),);
                 },
 
@@ -96,71 +90,3 @@ class _HomePageBodyState  extends State<HomePageBody>{
   }
 }
 
-
-// import 'package:flutter/material.dart';
-// import 'signIn_pages/signIn.dart';
-//
-// void main() {
-//   runApp(const HomeScreen());
-// }
-//
-// class HomeScreen extends StatelessWidget {
-//   const HomeScreen({Key? key}) : super(key: key);
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//           appBar: AppBar(title: const Text(''),
-//           backgroundColor: Colors.teal,),
-//           backgroundColor: Colors.lightGreen[50],
-//         body: SafeArea(
-//           child: Center(
-//             child: Column(
-//               children: [
-//                 const SizedBox(height: 100,),
-//                 const Text(
-//                   "GLI Mobile App",
-//                   style: TextStyle(
-//                       fontSize: 23.0,
-//                       color: Colors.teal,
-//                       fontWeight: FontWeight.w300
-//                   ),
-//                 ),
-//                 Image.asset(
-//                     //'images/Mobile App Logo.png',
-//                   'images/flashcard logo.png',
-//                   width: 200,
-//                   height: 200,
-//                 ),
-//                 const Text(
-//                   "GLI grants both Global skill and Examination",
-//                   style: TextStyle(
-//                     color: Colors.teal,
-//                   ),
-//                 ),
-//                 const SizedBox(height: 40.0),
-//                 ElevatedButton(
-//                   onPressed: (){
-//                     Navigator.push(context,
-//                     MaterialPageRoute(builder: (context)=> const signin_page()),
-//                     );
-//                   },
-//                   style: ButtonStyle(
-//                       backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-//                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-//                         RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(18.0),
-//                         ))
-//                     ),
-//                   child: const Text('Get Started'),
-//                 )
-//               ],
-//             ),
-//           ),
-//         )
-//         ),
-//       );
-//   }
-// }
-//
-//

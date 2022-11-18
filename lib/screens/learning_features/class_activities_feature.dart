@@ -88,7 +88,7 @@ class ClassActivities extends StatelessWidget {
               icon: Icon(Icons.add_business),
               label: 'classes'),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bubble_chart_outlined),
+            icon: Icon(Icons.account_circle_rounded),
             label: 'more',
           ),
         ],

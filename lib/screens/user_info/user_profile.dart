@@ -22,7 +22,7 @@ class UserInformation extends StatelessWidget {
         ],
         title: const Text('User Profile',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),),
+        style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),
       ),
       body: const UserProfileBody(),
 
@@ -50,7 +50,7 @@ class UserInformation extends StatelessWidget {
                 icon: Icon(Icons.add_business),
                 label: 'classes'),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bubble_chart_outlined),
+              icon: Icon(Icons.account_circle_rounded),
               label: 'more',
             ),
           ],
