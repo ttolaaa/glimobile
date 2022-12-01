@@ -48,4 +48,19 @@ flutter:
     - images/birthday.jpeg
     - images/pet-birthday.jpeg
     - images/all_about_halloween.jpeg
+    - images/App Material Design.png
+    - images/feedbacks.png
+    - images/classStory.png
+    - images/lessonReview.png
+    - images/exam_prep.png
+    - images/test_result.png
+    - images/school_announcement.png
+    - images/classfeedbacks.png
+    - images/gli_logo.png
+    - images/login_bg.png
+
+analyzer:
+  strong-mode: true
+  language:
+    enableSuperMixins: true
 

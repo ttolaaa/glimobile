@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_print
-
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import '../../models/login_model.dart';
 import '../notifications/notification_screen.dart';
 import '../signIn_pages/signIn.dart';
 import '../user_info/user_profile.dart';
@@ -9,14 +12,35 @@ import 'class_activities_feature.dart';
 import 'feedback_details.dart';
 import 'vocab_features.dart';
 
-
-class LearnFeature extends StatefulWidget {
+class LearnFeature extends StatefulWidget{
   const LearnFeature({Key? key}) : super(key: key);
   @override
+  // ignore: no_logic_in_create_state
   State<LearnFeature> createState() => _LearnFeatureState();
+}
+class getUserAllFeedbackData{
+  final String reviewFeedback, status, updatedAt, send, seen, createdAt, _id, name;
+  final String receiver, teacher, classCodes, classroom, level, content;
+  final String ratingS, speakings, ratingL, listenings, ratingW, writings, ratingR, readings;
+  final String comments, __v;
+  getUserAllFeedbackData(this.reviewFeedback, this.status, this.updatedAt, this.send, this.seen, this.createdAt, this._id, this.name, this.receiver, this.teacher, this.classCodes, this.classroom, this.level, this.content, this.ratingS, this.speakings, this.ratingL, this.listenings, this.ratingW, this.writings, this.ratingR, this.readings, this.comments, this.__v);
+
 }
 
 class _LearnFeatureState extends State<LearnFeature> {
+
+
+  getUserFeedbackData() async{
+
+    String url = 'http://139.59.253.84:3040/v2/feedback/student/lists';
+    final res = await http.get(Uri.parse(url),
+        headers: {
+          HttpHeaders.authorizationHeader: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoic3R1ZGVudCIsImVtYWlsIjoiamFtZXNAamFtZXMuY29tIiwibmFtZSI6IkphbWVzIiwiaWF0IjoxNjY5ODA1MzYzLCJleHAiOjE2Njk5NzgxNjN9.IlLQV_nubSPFuNb1XVHfQU5HmeATbMhekdgSIfrWPow'
+        });
+    var jsonData = jsonDecode(res.body);
+    print(jsonData.length);
+    print(jsonData[1]);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,14 +50,20 @@ class _LearnFeatureState extends State<LearnFeature> {
         elevation: 5.0,
         actions: [
           IconButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=> const NotificationPage()));
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotificationPage()));
               },
               icon: const Icon(Icons.notifications_active)),
         ],
         leading: IconButton(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> const UserInformation()));
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UserInformation()));
           },
           icon: const Icon(Icons.account_circle_rounded),
         ),
@@ -41,99 +71,98 @@ class _LearnFeatureState extends State<LearnFeature> {
         title: const Text(
           'Hello, \nChikako',
         ),
-        titleTextStyle: const TextStyle(
-          fontSize: 12,
-          color: Colors.white
-        ),
+        titleTextStyle: const TextStyle(fontSize: 12, color: Colors.white),
       ),
-      body: Center(
-          child: ListView(
-            padding: const EdgeInsets.all(20),
-            children: <Widget>[
-              //const SizedBox(height: 30,),
-              Container(
-                alignment: Alignment.center,
-                child: const Text(
-                  'feedback',
-                  style: TextStyle(
-                    color: Colors.teal,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30,),
-              //sample card class
-              //ElevatedCardExample(),
-              ViewFeedbackCard(),
-              ElevatedCardExample(),
-              // Card2(),
-              // Card3(),
-              // Card4(),
-              // ElevatedCardExample(),
-              // Card2(),
-              // Card3(),
-              // Card4(),
-              // ElevatedCardExample(),
-              // Card2(),
-              // Card3(),
-              // Card4(),
-              // ElevatedCardExample(),
-              // Card2(),
-              // Card3(),
-              // Card4(),
+      body: Text('Body'),
 
 
-
-
-              //Image.asset('images/flashcard logo.png'),
-              TextButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const SignInPage() ));
-                  },
-                  child: const Text('Return')
-              )
-
-            ],
-          )),
+      // body: Center(
+      //     child: ListView(
+      //   padding: const EdgeInsets.all(20),
+      //   children: <Widget>[
+      //     //const SizedBox(height: 30,),
+      //     Container(
+      //       alignment: Alignment.center,
+      //       child: const Text(
+      //         'feedback',
+      //         style: TextStyle(
+      //             color: Colors.teal,
+      //             fontWeight: FontWeight.w500,
+      //             fontSize: 16),
+      //       ),
+      //     ),
+      //
+      //
+      //
+      //     // const SizedBox(
+      //     //   height: 30,
+      //     // ),
+      //     //
+      //
+      //
+      //     //sample card class
+      //     //ElevatedCardExample(),
+      //     ViewFeedbackCard(),
+      //     ElevatedCardExample(),
+      //     //Image.asset('images/flashcard logo.png'),
+      //     TextButton(
+      //         onPressed: () {
+      //           Navigator.push(
+      //               context,
+      //               MaterialPageRoute(
+      //                   builder: (context) => const SignInPage()));
+      //         },
+      //         child: const Text('Return'))
+      //   ],
+      // )),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
-          if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context)=> const LearnFeature()));
-          if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context)=> const VocabScreen()));
-          if (value == 2) Navigator.push(context, MaterialPageRoute(builder: (context)=> const ClassActivities()));
-          if (value == 3) Navigator.push(context, MaterialPageRoute(builder: (context)=> const UserInformation()));
-
+          if (value == 0) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const LearnFeature()));
+          }
+          if (value == 1) {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const VocabScreen()));
+          }
+          if (value == 2) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ClassActivities()));
+          }
+          if (value == 3) {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UserInformation()));
+          }
         },
-        
         backgroundColor: Colors.teal,
         unselectedItemColor: Colors.teal.shade200,
         selectedItemColor: Colors.teal,
-
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.description_outlined),
-              label: 'feedback'),
+              icon: Icon(Icons.description_outlined), label: 'feedback'),
+          BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'learn'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book),
-              label: 'learn'),
+              icon: Icon(Icons.add_business), label: 'classes'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_business),
-              label: 'classes'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_rounded),
-              label: 'more',
-            ),
-      ],
-
+            icon: Icon(Icons.account_circle_rounded),
+            label: 'more',
+          ),
+        ],
       ),
-
     );
   }
-
 }
 
 class FeedbackCard extends StatelessWidget {
-  const FeedbackCard({Key? key}) : super(key: key);
+  const FeedbackCard({Key? key, required this.reviewFeedback, required this.status, required this.updatedAt, required this.send, required this.seen, required this.createdAt, required this.name, required this.receiver, required this.teacher, required this.classCodes, required this.classroom, required this.level, required this.content, required this.ratingS, required this.speakings, required this.ratingL, required this.listenings, required this.ratingW, required this.writings, required this.ratingR, required this.readings, required this.comments}) : super(key: key);
+  final String reviewFeedback, status, updatedAt, send, seen, createdAt, name;
+  final String receiver, teacher, classCodes, classroom, level, content;
+  final String ratingS, speakings, ratingL, listenings, ratingW, writings, ratingR, readings;
+  final String comments;
 
   @override
   Widget build(BuildContext context) {
@@ -149,17 +178,12 @@ class FeedbackCard extends StatelessWidget {
         child: const Text(
           'Elevated Card',
           textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w400
-          ),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
         ),
       ),
     );
   }
 }
-
-
 // ignore: must_be_immutable
 class ViewFeedbackCard extends StatelessWidget {
   ViewFeedbackCard({super.key});
@@ -180,16 +204,14 @@ class ViewFeedbackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-
+      onTap: () {
         print('Tapped Me!!');
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> const FeedbackDetails()));
-
-        },
-
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const FeedbackDetails()));
+      },
       child: Card(
         shape: RoundedRectangleBorder(
-          side:  const BorderSide(
+          side: const BorderSide(
             color: Colors.white, //<-- SEE HERE
           ),
           borderRadius: BorderRadius.circular(12.0),
@@ -197,33 +219,25 @@ class ViewFeedbackCard extends StatelessWidget {
         color: Colors.white,
         borderOnForeground: true,
         elevation: 2,
-
         child: Column(
-
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              title: Text('Term Code : ${termCode[0]}',
+              title: Text('Term Code : ${classDate}',
                   style: const TextStyle(color: Colors.teal, fontSize: 12)),
-              subtitle: Text('Date: ${classDate[0]} ',
+              subtitle: Text(
+                'Date: ${classDate[0]} ',
                 style: const TextStyle(color: Colors.teal, fontSize: 12),
               ),
             ),
             // mainAxisAlignment: MainAxisAlignment.end
             // Icon(Icons.account_circle_rounded, color: Colors.teal,),
-
           ],
-
-
         ),
-
       ),
     );
   }
 }
-
-
-
 // ignore: must_be_immutable
 class ElevatedCardExample extends StatelessWidget {
   ElevatedCardExample({super.key});
@@ -244,193 +258,70 @@ class ElevatedCardExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: (){
 
-      print('Tapped Me!!');
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> const IAFeedbackDetails()));
-
-    },
-    child: Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.white, //<-- SEE HERE
-        ),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      color: Colors.white,
-      borderOnForeground: true,
-      elevation: 2,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-           ListTile(
-            title: Text('Term Code : ${termCode[0]}',
-                style: const TextStyle(color: Colors.teal, fontSize: 12)),
-            subtitle: Text('Date: ${classDate[0]} ',
-              style: const TextStyle(color: Colors.teal, fontSize: 12),
+        onTap: () {
+          print('Tap Me');
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const IAFeedbackDetails()));
+        },
+        child: Card(
+          shape: RoundedRectangleBorder(
+            side: const BorderSide(
+              color: Colors.white, //<-- SEE HERE
             ),
+            borderRadius: BorderRadius.circular(12.0),
           ),
-          // mainAxisAlignment: MainAxisAlignment.end
-          // Icon(Icons.account_circle_rounded, color: Colors.teal,),
-
-        ],
-
-
-      ),
-
-    ));
+          color: Colors.white,
+          borderOnForeground: true,
+          elevation: 2,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              ListTile(
+                title: Text('Term Code : ${termCode[0]}',
+                    style: const TextStyle(color: Colors.teal, fontSize: 12)),
+                subtitle: Text(
+                  'Date: ${classDate[0]} ',
+                  style: const TextStyle(color: Colors.teal, fontSize: 12),
+                ),
+              ),
+              // mainAxisAlignment: MainAxisAlignment.end
+              // Icon(Icons.account_circle_rounded, color: Colors.teal,),
+            ],
+          ),
+        ));
   }
 }
-// ignore: must_be_immutable
-class Card2 extends StatelessWidget {
-  Card2({super.key});
 
-  List<String> termCode = [
-    'G1T1W1U1W1C1',
-    'G1T1W1U1W1C2',
-    'G1T1W1U1W2C1',
-    'G1T1W1U1W2C2'
-  ];
-  List<String> classDate = [
-    '2022-04-04',
-    '2022-04-07',
-    '2022-04-11',
-    '2022-04-14',
-  ];
+class FeedbackCard1 extends StatelessWidget {
+  const FeedbackCard1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.white, //<-- SEE HERE
-        ),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      color: Colors.white,
-      borderOnForeground: true,
-      elevation: 2,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            title: Text('Term Code : ${termCode[1]}',
-                style: const TextStyle(color: Colors.teal, fontSize: 12)),
-            subtitle: Text('Date: ${classDate[1]} ',
-              style: const TextStyle(color: Colors.teal, fontSize: 12),
-            ),
-          ),
-          // mainAxisAlignment: MainAxisAlignment.end
-          // Icon(Icons.account_circle_rounded, color: Colors.teal,),
-
-        ],
-
-
-      ),
+    return ElevatedButton(
+      onPressed: (){},
+      child: Text('Click Me'),
+      // shape: RoundedRectangleBorder(
+      //   side: const BorderSide(
+      //     color: Colors.white, //<-- SEE HERE
+      //   ),
+      //   borderRadius: BorderRadius.circular(12.0),
+      // ),
+      // child: Container(
+      //   padding: const EdgeInsets.all(40),
+      //   child: const Text(
+      //     'Elevated Card',
+      //     textAlign: TextAlign.center,
+      //     style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+      //   ),
+      // ),
 
     );
   }
 }
-// ignore: must_be_immutable
-class Card3 extends StatelessWidget {
-  Card3({super.key});
 
-  List<String> termCode = [
-    'G1T1W1U1W1C1',
-    'G1T1W1U1W1C2',
-    'G1T1W1U1W2C1',
-    'G1T1W1U1W2C2'
-  ];
-  List<String> classDate = [
-    '2022-04-04',
-    '2022-04-07',
-    '2022-04-11',
-    '2022-04-14',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.white, //<-- SEE HERE
-        ),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      color: Colors.white,
-      borderOnForeground: true,
-      elevation: 2,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            title: Text('Term Code : ${termCode[2]}',
-                style: const TextStyle(color: Colors.teal, fontSize: 12)),
-            subtitle: Text('Date: ${classDate[2]} ',
-              style: const TextStyle(color: Colors.teal, fontSize: 12),
-            ),
-          ),
-          // mainAxisAlignment: MainAxisAlignment.end
-          // Icon(Icons.account_circle_rounded, color: Colors.teal,),
-
-        ],
-
-
-      ),
-
-    );
-  }
-}
-// ignore: must_be_immutable
-class Card4 extends StatelessWidget {
-  Card4({super.key});
-
-  List<String> termCode = [
-    'G1T1W1U1W1C1',
-    'G1T1W1U1W1C2',
-    'G1T1W1U1W2C1',
-    'G1T1W1U1W2C2'
-  ];
-  List<String> classDate = [
-    '2022-04-04',
-    '2022-04-07',
-    '2022-04-11',
-    '2022-04-14',
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Colors.white, //<-- SEE HERE
-        ),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      color: Colors.white,
-      borderOnForeground: true,
-      elevation: 2,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            title: Text('Term Code : ${termCode[3]}',
-                style: const TextStyle(color: Colors.teal, fontSize: 12)),
-            subtitle: Text('Date: ${classDate[3]} ',
-              style: const TextStyle(color: Colors.teal, fontSize: 12),
-            ),
-          ),
-          // mainAxisAlignment: MainAxisAlignment.end
-          // Icon(Icons.account_circle_rounded, color: Colors.teal,),
-
-        ],
-
-
-      ),
-
-    );
-  }
-}
 
 
 

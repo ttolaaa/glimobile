@@ -1,6 +1,4 @@
 class LoginResponseModel {
-  //final String token;
-  //final String error;
   final String accessJWT;
   final String message;
 

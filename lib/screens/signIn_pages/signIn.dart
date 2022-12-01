@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:mb_report/ProgressHUD.dart';
-import 'package:mb_report/models/login_model.dart';
+
 import 'package:mb_report/screens/learning_features/feedbacks.dart';
 import 'package:mb_report/service/api_service.dart';
+import '../../models/login_model.dart';
 import 'forget_password.dart';
 
 class SignInPage extends StatefulWidget {
@@ -37,15 +38,6 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  // showSnackBar(){
-  //   var snackBar = const SnackBar(content: Text('login successfully'));
-  //   // ignore: deprecated_member_use
-  //   globalScaffleKey.currentState!.showSnackBar(snackBar);
-  // }
-
-  //TextEditingController emailController = TextEditingController();
-  //TextEditingController passwordController = TextEditingController();
-
   Widget _uiSetUp(BuildContext context) {
     return Scaffold(
         key: globalScaffleKey,
@@ -56,6 +48,10 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
         body: Form(
+            // decoration: new BoxDecoration(
+            //     image: new DecorationImage(
+            //         image: new AssetImage('images/App Material Design.png'),
+            //         fit: BoxFit.cover)),
             key: globalFormKey,
             child: Column(
               // padding: const EdgeInsets.all(20),
@@ -64,9 +60,9 @@ class _SignInPageState extends State<SignInPage> {
                   height: 20,
                 ),
                 Image.asset(
-                  'images/flashcard logo.png',
-                  width: 100,
-                  height: 100,
+                  'images/gli_logo.png',
+                  width: 200,
+                  height: 200,
                 ),
                 Container(
                     alignment: Alignment.center,
