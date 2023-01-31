@@ -24,7 +24,9 @@ class TestResultMenu extends StatelessWidget {
               width: 200,
               height: 200,
             ),
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Container(
                 padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
                 alignment: Alignment.center,
@@ -52,54 +54,6 @@ class TestResultMenu extends StatelessWidget {
                     fontSize: 14,
                   ),
                 )),
-            SizedBox(
-              height: 10,
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                textStyle: const TextStyle(fontSize: 12),
-              ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const ExamPrepMenuScreen()),);
-              },
-              child: const Text('Back', style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-
-              ),),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                textStyle: const TextStyle(fontSize: 12),
-              ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SchoolAnnouncementMenuScreen()),);
-              },
-              child: const Text('Next', style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-
-              ),),
-            ),
-            TextButton(
-              style: TextButton.styleFrom(
-                padding: const EdgeInsets.fromLTRB(00, 0, 0, 0),
-                textStyle: const TextStyle(fontSize: 12),
-              ),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInPage()),);
-              },
-              child: const Text('Skip', style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 14,
-
-              ),),
-            ),
           ],
         ),
       ),

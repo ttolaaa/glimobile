@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mb_report/onboarding_screen.dart';
 
 import 'screens/signIn_pages/signIn.dart';
 import 'screens/menu_screens/class_stories_intro.dart';
@@ -18,7 +19,8 @@ class HomePage extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.white,
         // appBar: AppBar(title: const Text(_title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),),),
-        body: const HomePageBody(),
+        // body: const HomePageBody(),
+        body: OnBoardingScreen(),
       ),
     );
   }
